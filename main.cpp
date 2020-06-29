@@ -21,15 +21,10 @@ std::map<std::string, std::string> loadDictionaryFromFile(const char *file) {
     std::string nextLine;
     std::istringstream iss;
 
-    if(std::getline(inFile, nextLine)) {
-        int num;
-        std::istringstream(nextLine) >> num;
-        for(int i = 0; i < num; i ++) {
-            std::getline(inFile, nextLine);
-            std::string english, stonks;
-            std::istringstream(nextLine) >> english >> stonks;
-            dictionary[english] = stonks;
-        }
+    while(std::getline(inFile, nextLine)) {
+        std::string english, stonks;
+        std::istringstream(nextLine) >> english >> stonks;
+        dictionary[english] = stonks;
     }
 
     return dictionary;

@@ -1,3 +1,2 @@
-2
-stocks stonmks
+stocks stonks
 health helth
