@@ -1,17 +1,26 @@
 #include <iostream>
 #include <string>
+#include <regex>
 #include <map>
 #include <sstream>
 #include <fstream>
 
 std::string getInput() {
-    std::string input;
-    std::cin >> input;
+    char *input;
+    std::cin.getline(input, 2147483647);
     return input;
 }
 
+std::string replace(std::string const &in, std::string const &from, std::string const &to)
+{
+    return std::regex_replace(in, std::regex(from), to);
+}
+
 std::string translate(std::string input, std::map<std::string, std::string> dictionary) {
-    return dictionary[input];
+    for(std::pair<std::string, std::string> iter : dictionary) {
+        input = replace(input, iter.first, iter.second);
+    }
+    return input;
 }
 
 std::map<std::string, std::string> loadDictionaryFromFile(const char *file) {
